@@ -1,7 +1,7 @@
 # Critically judge your correlations! 
 
 * Author: Chenxin Li
-* Contact:lukli@ucdavis.edu 
+* Contact: lukli@ucdavis.edu 
 
 Ever wonder if you should publish a correlation?
 
