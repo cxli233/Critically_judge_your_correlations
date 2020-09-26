@@ -2,6 +2,7 @@
 
 * Author: Chenxin Li
 * Contact: lukli@ucdavis.edu 
+* Twitter: ChenxinLi2 
 
 Ever wonder if you should publish a correlation?
 
