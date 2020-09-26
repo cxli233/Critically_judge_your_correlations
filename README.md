@@ -20,11 +20,8 @@ Ask yourself, can you tell which line is the best fit line?
 If you can't, your correlation is probably not real. It might have a small p value, but it is nowhere near a strong correlation. 
 
 # Try it out yourself
+Can you tell which line is the best fit line?  
 ![Bad Example](https://github.com/cxli233/Critically_judge_your_correlations/blob/master/bad_example.png) 
 
-Can you tell which line is the best fit line? I beg you can't. 
-
+Can you tell which line is the best fit line?  
 ![Good Example](https://github.com/cxli233/Critically_judge_your_correlations/blob/master/good_example.png) 
-
-How about this one? Much easier, no? 
-
