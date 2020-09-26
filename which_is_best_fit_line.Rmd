@@ -1,0 +1,104 @@
+---
+title: "Which is the best fit line?"
+author: "Chenxin Li"
+date: "9/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#dependencies
+```{r}
+library(ggplot2) #required for making the plot
+library(dplyr) #required for the pipe  
+```
+
+```{r}
+set.seed(666)
+```
+
+#making the function 
+You can cope this code chunk into your R script.
+After you run it, a new function called random_line() will appear in your environment. 
+```{r}
+random_line <- function(x, y){  #takes scatter plot data as input: feed in x and y 
+  
+  randomize <- function(x, y){
+  b_random = runif(n = 1, min = min(y), max = max(y))
+  a_random = (mean(y) - b_random)/mean(x)
+  y_random = a_random*x + b_random 
+} #this function produces a line w/ random slope & intercept that passes (mean(x), mean(y)) 
+  #the max and min y intercept is determined by the max and min y value 
+  #since the line has to pass (mean(x), mean(y)), the slope = (mean(y) - y_intercept)/mean(x) 
+  
+  p = data.frame(
+    x = x, 
+    y = y 
+  ) %>% 
+    cbind(replicate(randomize(x, y), n = 5) %>%  #produce 5 random lines 
+            as.data.frame()) %>% 
+  ggplot(aes(x = x, y = y)) +
+    geom_smooth(method = "lm", se = F, color = "skyblue3", size = 1.2, alpha = 0.8) + #your best fit line
+    geom_line(aes(y = V1), color = "skyblue3", size = 1.2, alpha = 0.8) + 
+    geom_line(aes(y = V2), color = "skyblue3", size = 1.2, alpha = 0.8) +
+    geom_line(aes(y = V3), color = "skyblue3", size = 1.2, alpha = 0.8) +
+    geom_line(aes(y = V4), color = "skyblue3", size = 1.2, alpha = 0.8) +
+    geom_line(aes(y = V5), color = "skyblue3", size = 1.2, alpha = 0.8) +  #your 5 random lines
+    geom_point(size = 3, alpha = 0.8) + #the scattered points
+    theme_classic() + #just the theme, not critical 
+    annotate(geom = "text", 
+    label = paste("r = ", signif(cor(x, y), 3), sep = ""), #print the correlation coefficient 
+    size = 5, 
+    x = Inf, 
+    y = if(cor(x, y) > 0){   #for r > 0, text appears at lower right corner 
+       -Inf
+    } else {Inf},     #for r <= 0, text appeares at upper right corner 
+    hjust = 1.1,
+    vjust = if(cor(x, y) > 0){
+       -1.1    #some fine adjustment on text justification 
+    } else {1.1}  
+    ) 
+  print(p)
+} 
+```
+
+
+#Example 
+```{r}
+df1 <- data.frame(
+  x = c(1:200),   #n = 200 simulation
+  noise = rnorm(n = 200, mean = 0, sd = 10) #add some normally distributed noise 
+) %>% 
+  mutate(y = -x + noise + 5) #the best fit line is y = -x + 5
+
+head(df1)
+```
+ 
+##bad 
+Now call the random_line() function, and feed in the x and y variables of interest 
+```{r}
+random_line(x = df1$x, y = df1$noise) 
+ggsave("bad_example.png", height = 5, width = 5)
+```
+Can you tell which line is the best fit line? 
+
+##good
+```{r}
+random_line(x = df1$x, y = df1$y) 
+ggsave("good_example.png", height = 5, width = 5)
+```
+Can you tell which line is the best fit line?
+
+
+
+
+
+
+
+
+
+
+
+
