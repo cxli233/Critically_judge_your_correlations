@@ -18,3 +18,9 @@ These 5 random lines all meet at (mean_x, mean_y).
 Ask yourself, can you tell which line is the best fit line?
 
 If you can't, your correlation is probably not real. It might have a small p value, but it is nowhere near a strong correlation. 
+
+#Try it out yourself
+![Bad Example](https://github.com/cxli233/Critically_judge_your_correlations/blob/master/bad_example.png) 
+
+Can you tell which line is the best fit line? I beg you can't. 
+
