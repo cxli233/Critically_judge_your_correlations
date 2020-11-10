@@ -2,7 +2,7 @@
 
 * Author: Chenxin Li
 * Contact: lukli@ucdavis.edu 
-* Twitter: ChenxinLi2 
+* Twitter: [ChenxinLi2](https://twitter.com/ChenxinLi2)    
 
 Ever wonder if you should publish a correlation?  
 Moderate correlation coefficient and not sure if your correlation is real?   
